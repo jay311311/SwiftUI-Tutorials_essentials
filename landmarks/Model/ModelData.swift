@@ -6,8 +6,14 @@
 //
 
 import Foundation
+import Combine
 
-var landmarks : [Landmark] = load("landmarkData.json")
+final class ModelData : ObservableObject{
+    // - @Published : 관찰가능한 객체(ObservableObject)는 데이터에대한 변경사항을 published 해야함, 기여자가 데이터의 변경사항을 선택할수 있도록
+    @Published var landmarks : [Landmark] = load("landmarkData.json")
+}
+
+
 
 func load <T : Decodable>(_ filename : String) -> T {
     let data : Data
