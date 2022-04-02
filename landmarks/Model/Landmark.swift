@@ -16,10 +16,19 @@ struct Landmark:Codable, Hashable, Identifiable{
     var state : String
     var description : String
     var isFavorite : Bool
+    var isFeatured : Bool
+    
+    var category : Category
+    
+    enum Category : String, Codable, CaseIterable {
+        case lakes = "Lakes"
+        case rivers =  "Rivers"
+        case mountains = "Mountains"
+    }
     
     // - private1 : 사용자가 보여질 이미지 자체에만 신경쓰기때문에 private사용함
     private var imageName : String
-    var image : Image{
+    var image : Image {
         Image(imageName)
     }
     

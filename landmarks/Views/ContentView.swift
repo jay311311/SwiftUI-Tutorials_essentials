@@ -8,9 +8,27 @@
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-       LandmarkList()
+    @State private var selection : Tab = .Featured
     
+    enum Tab{
+        case Featured
+        case List
+    }
+    
+    var body: some View {
+        TabView(selection: $selection){
+            // -  tag : selection속성
+            CategoryHome()
+                .tabItem({
+                    Label("List",systemImage: "star")
+                })
+                .tag(Tab.Featured)
+            LandmarkList()
+                .tabItem({
+                    Label("List",systemImage: "list.bullet")
+                })
+                .tag(Tab.List)
+        }
     }
 }
 

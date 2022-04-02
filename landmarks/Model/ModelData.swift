@@ -12,6 +12,17 @@ final class ModelData : ObservableObject{
     // - @Published : 관찰가능한 객체(ObservableObject)는 데이터에대한 변경사항이 있다면 published 해야함, 기여자가 데이터의 변경사항을 선택할수 있도록
     @Published var landmarks : [Landmark] = load("landmarkData.json")
     var hikes :[Hike] = load("hikeData.json")
+    var categories : [String : [Landmark]] {
+        Dictionary(
+            grouping: landmarks,
+            by: { $0.category.rawValue }
+        )
+    }
+    var features : [Landmark] {
+        landmarks.filter{
+            $0.isFeatured
+        }
+    }
 }
 
 
