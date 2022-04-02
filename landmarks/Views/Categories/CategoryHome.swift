@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CategoryHome: View {
     @EnvironmentObject var modelData : ModelData
+    @State private var showingProfile =  false
     var body: some View {
         // -  NavigationView : 다른 카테고리들을 호스팅 하기위함
         NavigationView{
@@ -23,10 +24,22 @@ struct CategoryHome: View {
                     key in CategoryRow(categoryName: key, items: modelData.categories[key]!)
                 }
                 .listRowInsets(EdgeInsets())
-
+                
             }
-                .navigationTitle("Featured")
-    }
+            .listStyle(.inset)
+            .navigationTitle("Featured")
+            .toolbar {
+                Button {
+                    showingProfile.toggle()
+                } label: {
+                    Label("user Profile", systemImage: "person.crop.circle")
+                }
+            }
+            .sheet(isPresented: $showingProfile) {
+                ProfileHost()
+                    .environmentObject(modelData)
+            }
+        }
         
     }
 }

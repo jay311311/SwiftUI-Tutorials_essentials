@@ -23,6 +23,8 @@ final class ModelData : ObservableObject{
             $0.isFeatured
         }
     }
+    //ModelData 클래스를 업데이트하여, 사용자가 프로필 뷰를 비활성한 후에도 사용자 프로필 뷰의 인스턴스를 지속할수 있게 함.
+    @Published var profile = Profile.default
 }
 
 
