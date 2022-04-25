@@ -32,6 +32,12 @@ struct Landmark:Codable, Hashable, Identifiable{
         Image(imageName)
     }
     
+    var featureImage: Image? {
+            isFeatured ? Image(imageName + "_feature") : nil
+        }
+
+    
+    
     // - private2 : 계산된 property를 만드는데에만 사용될것이기 때문에 private 사용함
     private var coordinates : Coordinates
     var locationCoordinate : CLLocationCoordinate2D{
